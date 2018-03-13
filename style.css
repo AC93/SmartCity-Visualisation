@@ -1,0 +1,144 @@
+* {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+h1{
+  margin:0;
+  padding:10;
+}
+#ldonut{
+  position: relative;
+  left:66%;
+  up:60px;
+  padding:0px;
+  margin:0px;
+}
+
+#lhm{
+  position: relative;
+  left:40%;
+}
+/*nav*/
+#nav {
+  background-color: #2c3e50;
+  color: white;
+  padding:15px;
+  text-align: center;
+}
+
+#nav p {
+  margin: 4px;
+}
+
+#nav h2 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+#nav input {
+  margin-left: 20px;
+}
+.container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: auto;
+  height: auto;
+
+
+}
+
+/*Overview*/
+.bubbleChart{
+  width:50%;
+  height:500px;
+  position: relative;
+  left:0px;
+  right: 50px;
+  top: 50px;
+}
+
+.bubbleChart svg{
+  width:450px;
+  height:500px;
+  position: relative;
+  left:150px;
+  top: 30px;
+  right: 50px;
+
+}
+
+
+.svg{
+
+  min-width: 400px;
+  min-height: 400px;
+}
+
+/*pie*/
+#pie {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: 49%;
+  height: 500px;
+  position: relative;
+  left:50px;
+  top:150px;
+}
+
+path.slice{
+	stroke-width:2px;
+}
+polyline{
+	opacity: .3;
+	stroke: black;
+	stroke-width: 2px;
+	fill: none;
+}
+#pie text.percent{
+	fill:white;
+	text-anchor:middle;
+	font-size:18px;
+}
+
+/*headings for visualisations*/
+.bubbleText{
+position: relative;
+top: 50px;
+left:310px;
+}
+.donutText{
+width:300px;
+
+position: relative;
+left:320px;
+top: 50px;
+}
+.heatmapText{
+  position:relative;
+  left:45%;
+  top: 100px;
+
+
+}
+
+
+/*Heatmap*/
+#chart{
+  display: block;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  width:1400px;
+  height:450px;
+
+
+}
+
+
+.tick text {
+  font-size: 1.5em;
+}
+rect.bordered {
+       stroke: white;
+       stroke-width:2px;
+     }

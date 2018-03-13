@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>D3 Final Project</title>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600,200italic,600italic&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <div id="nav">
+    <h1>Smart Street Light Dashboard</h1><br>
+    <form>
+
+
+
+
+
+    <p>
+
+            Vehicle Frequency Threshold:<input id="thresh" type="number" name="quantity" value=30 min=0>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Number of Street Lights:<input id="slNumber" type="number" name="quantity" value=1 min=1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            Type of Street Light: &nbsp;&nbsp;
+            <select id="slType" name="streetLight">
+            <option value=87.5>Incandescent</option>
+            <option value=56.5>Fluoroscent</option>
+            <option value=200>Metal Halide</option>
+            <option value=225>High Pressure Sodium</option>
+            <option value=99>Low Pressure Sodium</option>
+            </select>
+
+        </form>
+
+
+    </p>
+
+
+
+
+</div>
+
+<div class="container">
+
+
+</div>
+
+
+<div class="container">
+
+
+  <h1 class="bubbleText">Quick Data</h1>
+  <div class="bubbleChart"></div>
+
+
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="Donut3D.js"></script>
+<h1 class="donutText">Weekly Energy Savings</h1>
+    <svg
+      version="1.1"
+      baseProfile="full"
+      xmlns="http://www.w3.org/2000/svg"
+      id="pie">
+    </svg>
+
+</div>
+<img id="ldonut" src="lpie.png" alt="">
+
+
+
+<h1 class="heatmapText">Traffic Frequency HeatMap</h1>
+  <svg
+    version="1.1"
+    baseProfile="full"
+    xmlns="http://www.w3.org/2000/svg"
+    id="chart">
+  </svg><img id="lhm" src="lhm2.png" alt="">
+
+
+<div id="nav">
+  <div>
+      Select data to view:
+    <input type="radio" id="toggleOption1"
+     name="data-type" value="vc" checked>
+    <label for="toggleOption1">Vehicle Count</label>
+
+    <input type="radio" id="toggleOption2"
+     name="data-type" value="sl">
+    <label for="toggleOption2">Street Lights On/Off</label>
+  </div>
+</div>
+
+  <script src="http://phuonghuynh.github.io/js/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/d3/d3.min.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/d3-transform/src/d3-transform.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/extarray.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/misc.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/micro-observer.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/microplugin/src/microplugin.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/bubble-chart.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/central-click/central-click.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
+
+  <script src="app.js"></script>
+
+</body>
+</html>
