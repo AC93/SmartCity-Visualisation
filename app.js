@@ -15,6 +15,7 @@ var lowTraffic =0;
 var mediumTraffic =0;
 var highTraffic =0;
 var brightness;
+var sunless =0;
 
 //PieChart Variables
 let newArrayOnOff=[];
@@ -41,14 +42,14 @@ svg.append("g").attr("id","energySavings");
 //HeatMap Variables
 
 var marginHM = { top: 40, right: 20, bottom: 30, left: 80 },
-          widthHM = 1400 - marginHM.left - marginHM.right,
+          widthHM = 1428.8 - marginHM.left - marginHM.right,
           heightHM = 640 - marginHM.top - marginHM.bottom,
           gridSize = Math.floor(widthHM / 24),
           legendElementWidth = gridSize*2,
           buckets = 9,
           colors = ["#F7EBB5","#DEC95F","#FFD300","#FFB000","#FF7F00","#FF5300","#FF4100","#FF0000","#FF251A"], // alternatively colorbrewer.YlGnBu[9]
           days = ["Su","Mo", "Tu", "We", "Th", "Fr", "Sa"],
-          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          times = ["0a","1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p"];
 
           var svg =
           d3.select("#chart").append("svg")
@@ -85,7 +86,7 @@ var marginHM = { top: 40, right: 20, bottom: 30, left: 80 },
 //https://docs.google.com/spreadsheets/d/e/2PACX-1vQY_RMLzyn9Kxt5XS3Pzv2UIRXS_qhUDFb2csGlhoUBMuCF4Uht8s0_jJh1kEsw0Gd167feLjYNIuKA/pub?gid=471976905&single=true&output=csv
 //OverView begins here
 //https://docs.google.com/spreadsheets/d/e/2PACX-1vRhI7nrcgGTzPiWMBp9VxVt_RK7xET97_YUkjZg_Vi00bBWehfYS0eczWo28SK5SfOLMN6GyCIhfwsz/pub?gid=471976905&single=true&output=csv
-d3.csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vRhI7nrcgGTzPiWMBp9VxVt_RK7xET97_YUkjZg_Vi00bBWehfYS0eczWo28SK5SfOLMN6GyCIhfwsz/pub?gid=471976905&single=true&output=csv',function(row){
+d3.csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vQY_RMLzyn9Kxt5XS3Pzv2UIRXS_qhUDFb2csGlhoUBMuCF4Uht8s0_jJh1kEsw0Gd167feLjYNIuKA/pub?gid=471976905&single=true&output=csv',function(row){
  var time = new Date(row.time);
  var count = +row.CarCount;
  var hour = time.getHours();
@@ -93,7 +94,7 @@ d3.csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vRhI7nrcgGTzPiWMBp9VxVt_
  var month = time.getMonth();
  var year = time.getFullYear();
  var day = time.getDay();
- var sunlight = (hour < 17 && hour > 7) ? "yes" : "no" ;
+ var sunlight = (hour <= 17 && hour > 7) ? "yes" : "no" ;
 
   return{
      value: count,
@@ -108,7 +109,7 @@ d3.csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vRhI7nrcgGTzPiWMBp9VxVt_
    }
  },function(error,data){
   if(error) throw error;
-  console.log(data);
+
   maxValue = d3.max(data,d=> d.value);
   minValue = d3.min(data,d=> d.value);
   var lowTrafficThreshold =maxValue*(1/4);
@@ -154,12 +155,22 @@ d3.csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vRhI7nrcgGTzPiWMBp9VxVt_
           }
         }
 
+
+				for(var i=0;i<data.length;i++)
+					{
+						if(data[i].sunlight == "no")
+						{
+							sunless++;
+					}
+					}
+
+
+
       ON=onArray.length;
       OFF=offArray.length;
       OFFpercent = OFF*10*5;
       ONpercent = ON*10*5 ;
-			console.log(ON);
-			console.log(OFF);
+
 
       //Energy Consumed Percentage
       ONOFFpercent = OFFpercent/(ONpercent+OFFpercent);
@@ -191,6 +202,7 @@ $(document).ready(function () {
         {text: "Hours monitored", count:ON + OFF },
 				{text: "Least cars in an hour", count:minValue },
 				{text: "Most cars in an hour", count:maxValue},
+				{text: "Hours without daylight", count:sunless}
 
 
       ],
@@ -254,7 +266,7 @@ $(document).ready(function () {
 
 
 //Donut Piechart begins here
-d3.csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vRhI7nrcgGTzPiWMBp9VxVt_RK7xET97_YUkjZg_Vi00bBWehfYS0eczWo28SK5SfOLMN6GyCIhfwsz/pub?gid=471976905&single=true&output=csv',
+d3.csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vQY_RMLzyn9Kxt5XS3Pzv2UIRXS_qhUDFb2csGlhoUBMuCF4Uht8s0_jJh1kEsw0Gd167feLjYNIuKA/pub?gid=471976905&single=true&output=csv',
 function(row){
 var time = new Date(row.time);
 var count = +row.CarCount;
@@ -263,7 +275,7 @@ var date = time.getDate();
 var month = time.getMonth();
 var year = time.getFullYear();
 var day = time.getDay();
-var sunlight = (hour < 17 && hour > 7) ? "yes" : "no" ;
+var sunlight = (hour <= 17 && hour > 7) ? "yes" : "no" ;
 
  return{
     value: count,
@@ -279,7 +291,7 @@ var sunlight = (hour < 17 && hour > 7) ? "yes" : "no" ;
 },function(error,data){
  if(error) throw error;
 
-console.log(data);
+
 
 
 
@@ -287,12 +299,12 @@ console.log(data);
 for(var i=0;i<data.length;i++)
   {
 
-    if(data[i].value<countThreshold)
+    if(data[i].value<countThreshold && data[i].sunlight=="no")
       {
 
       offArrayPie.push(data[i]);
       }
-    else if(data[i].value>=countThreshold)
+    else if(data[i].value>=countThreshold && data[i].sunlight=="no")
       {
       onArrayPie.push(data[i]);
       }
@@ -300,8 +312,8 @@ for(var i=0;i<data.length;i++)
 
     ONPie=onArrayPie.length;
     OFFPie=offArrayPie.length;
-
-
+		console.log(ONPie);
+		console.log(OFFPie);
 
 newArrayOnOff.push({label:"On",value:ONPie,color:"red"});
 newArrayOnOff.push({label:"Off",value:OFFPie,color:"green"});
@@ -332,17 +344,17 @@ Donut3D.draw("energySavings", newArrayOnOff, 150, 150, 130, 100, 30, 0.4);
 countThreshold = d3.select("#thresh").property("value");
 offArrayPie=[];
 onArrayPie=[];
-console.log(countThreshold);
+
 				for(var i=0;i<data.length;i++)
 				  {
 
 
-				    if(data[i].value<countThreshold)
+				    if(data[i].value<countThreshold && data[i].sunlight=="no")
 				      {
 
 				      offArrayPie.push(data[i]);
 				      }
-				    else if(data[i].value>=countThreshold)
+				    else if(data[i].value>=countThreshold && data[i].sunlight=="no")
 				      {
 				      onArrayPie.push(data[i]);
 				      }
@@ -350,8 +362,8 @@ console.log(countThreshold);
 
 				    ONPie=onArrayPie.length;
 				    OFFPie=offArrayPie.length;
-console.log(ONPie);
-console.log(OFFPie);
+console.log(onArrayPie);
+console.log(offArrayPie);
         var slNumber=d3.select("#slNumber")
               .property("value");
         var slType=d3.select("#slType")
@@ -383,7 +395,7 @@ newArrayOnOff[1].value=(OFFPie*slNumber*slType);
 
 //HeatMap begins here
 
- d3.csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vRhI7nrcgGTzPiWMBp9VxVt_RK7xET97_YUkjZg_Vi00bBWehfYS0eczWo28SK5SfOLMN6GyCIhfwsz/pub?gid=471976905&single=true&output=csv',function(row){
+ d3.csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vQY_RMLzyn9Kxt5XS3Pzv2UIRXS_qhUDFb2csGlhoUBMuCF4Uht8s0_jJh1kEsw0Gd167feLjYNIuKA/pub?gid=471976905&single=true&output=csv',function(row){
  var time = new Date(row.time);
  var count = +row.CarCount;
  var hour = time.getHours();
@@ -391,7 +403,7 @@ newArrayOnOff[1].value=(OFFPie*slNumber*slType);
  var month = time.getMonth();
  var year = time.getFullYear();
  var day = time.getDay();
- var sunlight = (hour < 17 && hour > 7) ? "yes" : "no" ;
+ var sunlight = (hour <= 17 && hour > 7) ? "yes" : "no" ;
 
   return{
      value: count,
@@ -406,7 +418,7 @@ newArrayOnOff[1].value=(OFFPie*slNumber*slType);
    }
  },function(error,data){
   if(error) throw error;
-console.log(data);
+
   var data = data;
   let dataSet;
   let maxValue;
@@ -501,7 +513,7 @@ function updateCards(data,domainUsed,currentDataType)
         return (d.sunlight=="yes"? "white":domainUsed(d.value));
         }
         else
-        {console.log(domainUsed(d.value));
+        {
       return domainUsed(d.value) }
     });
 
