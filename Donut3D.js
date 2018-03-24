@@ -44,7 +44,7 @@
 	}
 
 	function getPercent(d){
-		return d.value+" Watts";
+		return d.value+" Wh";
 	}
 
 	Donut3D.transition = function(id, data, rx, ry, h, ir){
