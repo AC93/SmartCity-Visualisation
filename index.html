@@ -14,15 +14,11 @@
     <h1>Smart Street Light Dashboard</h1><br>
     <form>
 
-
-
-
-
     <p>
 
-            Vehicle Frequency Threshold:<input id="thresh" type="number" name="quantity" value=30 min=0>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Number of Street Lights:<input id="slNumber" type="number" name="quantity" value=1 min=1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
+            Vehicle Frequency Threshold:<input id="thresh" type="number" name="quantity" value=30 min=0>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Lights operable   /   Total lights:<input id="slNumber" type="number" name="quantity" value=1 min=0 >&nbsp;&nbsp;&nbsp;/
+            <input id="slTotal" type="number" name="quantity" value=1 min=1 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Type of Street Light: &nbsp;&nbsp;
             <select id="slType" name="streetLight">
             <option value=87.5>Incandescent</option>
@@ -36,8 +32,6 @@
 
 
     </p>
-
-
 
 
 </div>
@@ -71,13 +65,13 @@
 
 
 
-<h1 class="heatmapText">Traffic Frequency HeatMap</h1>
+<h1 class="heatmapText">Street Monitor HeatMap</h1>
   <svg
     version="1.1"
     baseProfile="full"
     xmlns="http://www.w3.org/2000/svg"
     id="chart">
-  </svg><img id="lhm" src="lhm2.png" alt="">
+  </svg><img id="lhm" src="lhm3.png" alt="">
 
 
 <div id="nav">
@@ -89,7 +83,7 @@
 
     <input type="radio" id="toggleOption2"
      name="data-type" value="sl">
-    <label for="toggleOption2">Street Lights On/Off</label>
+    <label for="toggleOption2">Above/Below threshold</label>
   </div>
 </div>
 

@@ -1,3 +1,6 @@
+
+
+
 //Overview Variables
 let overview = [];
 var countThreshold = d3.select("#thresh").property("value");
@@ -320,8 +323,17 @@ newArrayOnOff.push({label:"Off",value:OFFPie,color:"green"});
 
 var slNumber=d3.select("#slNumber")
       .property("value");
+var slTotal= d3.select("#slTotal")
+			.property("value");
 var slType=d3.select("#slType")
         .property("value");
+
+d3.select("#slNumber")
+.property("max",slTotal);
+
+
+d3.select("#slTotal")
+.property("max",99);
 
 
 //Dimming Approach
@@ -334,7 +346,7 @@ var slType=d3.select("#slType")
 
 //Just on and off approach
 //just on
-newArrayOnOff[0].value=(ONPie*slNumber*slType);
+newArrayOnOff[0].value=(ONPie*slTotal*slType);
 //just off
 newArrayOnOff[1].value=(OFFPie*slNumber*slType);
 
@@ -366,8 +378,15 @@ console.log(onArrayPie);
 console.log(offArrayPie);
         var slNumber=d3.select("#slNumber")
               .property("value");
+				var slTotal= d3.select("#slTotal")
+							.property("value");
         var slType=d3.select("#slType")
                 .property("value");
+
+d3.select("#slNumber")
+.property("max",slTotal);
+d3.select("#slTotal")
+.property("max",99);
 
 //Dimming Approach
 /*
@@ -379,7 +398,7 @@ console.log(offArrayPie);
 
 //Just on and off approach
 //just on
-newArrayOnOff[0].value=(ONPie*slNumber*slType);
+newArrayOnOff[0].value=(ONPie*slTotal*slType);
 //just off
 newArrayOnOff[1].value=(OFFPie*slNumber*slType);
 
