@@ -28,15 +28,6 @@ let ONPie;
 let OFFPie;
 
 
-
-
-
-var salesData=[
-	{label:"On", color:"#3366CC"},
-	{label:"Off", color:"#DC3912"},
-
-];
-
 var svg = d3.select("#pie").append("svg").attr("width",1700).attr("height",1700);
 
 svg.append("g").attr("id","energySavings");
@@ -89,7 +80,7 @@ var marginHM = { top: 40, right: 20, bottom: 30, left: 80 },
 //https://docs.google.com/spreadsheets/d/e/2PACX-1vQY_RMLzyn9Kxt5XS3Pzv2UIRXS_qhUDFb2csGlhoUBMuCF4Uht8s0_jJh1kEsw0Gd167feLjYNIuKA/pub?gid=471976905&single=true&output=csv
 //OverView begins here
 //https://docs.google.com/spreadsheets/d/e/2PACX-1vRhI7nrcgGTzPiWMBp9VxVt_RK7xET97_YUkjZg_Vi00bBWehfYS0eczWo28SK5SfOLMN6GyCIhfwsz/pub?gid=471976905&single=true&output=csv
-d3.csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vQY_RMLzyn9Kxt5XS3Pzv2UIRXS_qhUDFb2csGlhoUBMuCF4Uht8s0_jJh1kEsw0Gd167feLjYNIuKA/pub?gid=471976905&single=true&output=csv',function(row){
+d3.csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vRWgTU-yqUs7CpYkoAn1N4aA8fgHihYhvQLlsLxUK6NYUNMJL5J9aUPFoFBmOL5rhSBsoEidLrTCgva/pub?gid=1876450238&single=true&output=csv',function(row){
  var time = new Date(row.time);
  var count = +row.CarCount;
  var hour = time.getHours();
@@ -269,7 +260,7 @@ $(document).ready(function () {
 
 
 //Donut Piechart begins here
-d3.csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vQY_RMLzyn9Kxt5XS3Pzv2UIRXS_qhUDFb2csGlhoUBMuCF4Uht8s0_jJh1kEsw0Gd167feLjYNIuKA/pub?gid=471976905&single=true&output=csv',
+d3.csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vRWgTU-yqUs7CpYkoAn1N4aA8fgHihYhvQLlsLxUK6NYUNMJL5J9aUPFoFBmOL5rhSBsoEidLrTCgva/pub?gid=1876450238&single=true&output=csv',
 function(row){
 var time = new Date(row.time);
 var count = +row.CarCount;
@@ -315,8 +306,7 @@ for(var i=0;i<data.length;i++)
 
     ONPie=onArrayPie.length;
     OFFPie=offArrayPie.length;
-		console.log(ONPie);
-		console.log(OFFPie);
+
 
 newArrayOnOff.push({label:"On",value:ONPie,color:"red"});
 newArrayOnOff.push({label:"Off",value:OFFPie,color:"green"});
@@ -346,7 +336,7 @@ d3.select("#slTotal")
 
 //Just on and off approach
 //just on
-newArrayOnOff[0].value=(ONPie*slTotal*slType);
+newArrayOnOff[0].value=(ONPie*slTotal*slType)+(OFFPie*(slTotal-slNumber)*slType);
 //just off
 newArrayOnOff[1].value=(OFFPie*slNumber*slType);
 
@@ -398,7 +388,7 @@ d3.select("#slTotal")
 
 //Just on and off approach
 //just on
-newArrayOnOff[0].value=(ONPie*slTotal*slType);
+newArrayOnOff[0].value=(ONPie*slTotal*slType)+(OFFPie*(slTotal-slNumber)*slType);
 //just off
 newArrayOnOff[1].value=(OFFPie*slNumber*slType);
 
@@ -414,7 +404,7 @@ newArrayOnOff[1].value=(OFFPie*slNumber*slType);
 
 //HeatMap begins here
 
- d3.csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vQY_RMLzyn9Kxt5XS3Pzv2UIRXS_qhUDFb2csGlhoUBMuCF4Uht8s0_jJh1kEsw0Gd167feLjYNIuKA/pub?gid=471976905&single=true&output=csv',function(row){
+ d3.csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vRWgTU-yqUs7CpYkoAn1N4aA8fgHihYhvQLlsLxUK6NYUNMJL5J9aUPFoFBmOL5rhSBsoEidLrTCgva/pub?gid=1876450238&single=true&output=csv',function(row){
  var time = new Date(row.time);
  var count = +row.CarCount;
  var hour = time.getHours();
